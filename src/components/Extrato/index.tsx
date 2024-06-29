@@ -14,7 +14,7 @@ import {
 import { dateTransform } from "../../utils/date-transform";
 import { transformNumberToBrl } from "../../utils/transform-number-to-brl";
 import { Link } from "react-router-dom";
-
+import { MdDownload } from "react-icons/md";
 
 interface ExtratoProps {
   transacoes: ExtratoType[];
@@ -92,7 +92,9 @@ const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
                     {item.valor}
                   </TableCell>
                   <TableCell align="right">
-                    <Button variant="contained" >PDF</Button>
+                    <Button variant="contained" disabled >
+                    <MdDownload />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
