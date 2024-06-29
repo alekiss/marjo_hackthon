@@ -1,11 +1,16 @@
 import {
+  Card,
   Grid,
   Table,
+  TableBody,
   TableCell,
   TableContainer,
+  TableFooter,
   TableHead,
   TableRow,
 } from "@mui/material";
+import { dateTransform } from "../../utils/date-transform";
+import { transformNumberToBrl } from "../../utils/transform-number-to-brl";
 
 interface ExtratoProps {
   transacoes: ExtratoType[];
@@ -14,6 +19,7 @@ interface ExtratoProps {
 
 export type ExtratoType = {
   descricao: string;
+  dataTransacao: string;
   valor: number;
 };
 
@@ -40,23 +46,45 @@ const columns: Column[] = [
 const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
   return (
     <Grid container pt={"spacing-16"} px={"spacing-12"}>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow hover>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ top: 57, minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
+      <Card>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow hover>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ top: 57, minWidth: column.minWidth }}
+                  >
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {transacoes?.map((item) => (
+                <TableRow hover key={item.valor}>
+                  <TableCell>{item.descricao}</TableCell>
+                  <TableCell align="right">
+                    {dateTransform(item.dataTransacao)}
+                  </TableCell>
+                  <TableCell align="right">
+                    {transformNumberToBrl(item.valor)}
+                  </TableCell>
+                </TableRow>
               ))}
-            </TableRow>
-          </TableHead>
-        </Table>
-      </TableContainer>
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TableCell></TableCell>
+                <TableCell align="right" style={{ fontWeight: "bold" }}>Valor Total:</TableCell>
+                <TableCell align="right" style={{ fontWeight: "bold" }}>{transformNumberToBrl(valorTotal)}</TableCell>
+              </TableRow>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      </Card>
     </Grid>
   );
 };
