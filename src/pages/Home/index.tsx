@@ -30,7 +30,9 @@ const Home = () => {
   const [data, setData] = useState<any>({})
 
   const getList = async () => {
+
     const res = await getTransacaoList()
+    console.log(res)
     if (res.status == 401) {
       const navigate = useNavigate()
       navigate('/login')
