@@ -145,7 +145,8 @@ export default function HorizontalLinearStepper() {
                   </Typography>
 
                   <div style={{ width: '100%', justifyContent: 'center', display: 'flex', gap: '5px', marginTop: '20px' }}>
-                    <Button variant="contained" disabled>Baixar Comprovante</Button>
+                    <Button variant="contained" disabled >Baixar Comprovante</Button>
+                    
                     <div>
                       <Link to="/" style={{ textDecoration: 'none', width: '100%' }}>
                         <Button variant="contained" onClick={handleReset}>Ir para Transações </Button>

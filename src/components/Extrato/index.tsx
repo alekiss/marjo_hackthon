@@ -14,7 +14,7 @@ import {
 import { dateTransform } from "../../utils/date-transform";
 import { transformNumberToBrl } from "../../utils/transform-number-to-brl";
 import { Link } from "react-router-dom";
-
+import { MdDownload } from "react-icons/md";
 
 interface ExtratoProps {
   transacoes: ExtratoType[];
@@ -45,6 +45,7 @@ const columns: Column[] = [
     align: "right",
   },
   { id: "valor", label: "Valor (R$)", minWidth: 130, align: "right" },
+  { id: "descricao", label: "PDF" ,  minWidth: 130, align: "right"},
 ];
 
 const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
@@ -89,6 +90,11 @@ const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
                   </TableCell>
                   <TableCell align="right">
                     {item.valor}
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button variant="contained" disabled >
+                    <MdDownload />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

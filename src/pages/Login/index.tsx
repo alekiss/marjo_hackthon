@@ -45,12 +45,10 @@ const Login = () => {
       localStorage.setItem('refresh', res.data.refresh)
       navigate('/')
 
+      console.log('n', res)
     }).catch((error)=>{
-      if (error.status == 401) {
-        navigate('/login')
-        localStorage.clear()
-        return;
-    }
+      setMensagemErro('Usuário não encontrado!')
+      setOpen(true);
     })
   }
 
