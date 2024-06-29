@@ -51,9 +51,7 @@ const Login = () => {
         <img src={majorLogo} alt="Major Logo" width={200} style={{ margin: 'auto' }} />
         <TextField id="username" label="Usuário" variant="outlined" onChange={handleInputChange} value={usuario.username || ''} style={{ marginBottom: '20px' }} />
        
-        <TextField id="cpf" label="CPF" variant="outlined" onChange={handleInputChange} value={usuario.cpf || ''} style={{ marginBottom: '20px' }} />
         
-        <TextField id="email" label="E-Mail" variant="outlined" onChange={handleInputChange} value={usuario.email || ''} style={{ marginBottom: '20px' }} />
         
         <TextField id="password" label="Senha" variant="outlined" type="password" onChange={handleInputChange} value={usuario.password || ''} style={{ marginBottom: '20px' }} />
         <Button id='entrar' variant="contained" color="primary" onClick={handleSubmit}>Entrar</Button>

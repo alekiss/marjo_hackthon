@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from "react";
 import { Card, TextField, Button } from "@mui/material";
 import { cpf } from 'cpf-cnpj-validator';
 import Snackbar from '@mui/material/Snackbar';
+import majorLogo from '../../assets/img/logo-major.png'
 
 import { createUsuario } from "../../services/user.services";
 
@@ -31,7 +32,12 @@ const Cadastro = () => {
       return
     }
 
-    if (usuario.senha == null || usuario.senha.length == 0) {
+    if (usuario.username == null || usuario.username.length == 0) {
+      setMensagemErro('Digite seu usuário!')
+      setOpen(true);
+      return
+    }
+    if (usuario.password == null || usuario.password.length == 0) {
       setMensagemErro('Digite seu senha!')
       setOpen(true);
       return
@@ -59,7 +65,7 @@ const Cadastro = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }} >
       <Card sx={{ width: '30%', textAlign: 'center', padding: '20px', display: 'flex', flexDirection: 'column' }} >
-        <img src={'./logo-major.png'} alt="Major Logo" width={200} style={{ margin: 'auto' }} />
+        <img src={majorLogo} alt="Major Logo" width={200} style={{ margin: 'auto' }} />
         <TextField id="username" label="Usuário" variant="outlined" onChange={handleInputChange} value={usuario.username || ''} style={{ marginBottom: '20px' }} />
        <TextField id="email" label="E-Mail" variant="outlined" onChange={handleInputChange} value={usuario.email || ''} style={{ marginBottom: '20px' }} />
      
