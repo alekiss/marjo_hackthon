@@ -1,6 +1,6 @@
 import {
+  Box,
   Card,
-  Grid,
   Table,
   TableBody,
   TableCell,
@@ -8,6 +8,7 @@ import {
   TableFooter,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 import { dateTransform } from "../../utils/date-transform";
 import { transformNumberToBrl } from "../../utils/transform-number-to-brl";
@@ -45,7 +46,8 @@ const columns: Column[] = [
 
 const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
   return (
-    <Grid container pt={"spacing-16"} px={"spacing-12"}>
+    <Box>
+      <Typography>Transações Realizadas:</Typography>
       <Card>
         <TableContainer>
           <Table>
@@ -78,14 +80,18 @@ const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
             <TableFooter>
               <TableRow>
                 <TableCell></TableCell>
-                <TableCell align="right" style={{ fontWeight: "bold" }}>Valor Total:</TableCell>
-                <TableCell align="right" style={{ fontWeight: "bold" }}>{transformNumberToBrl(valorTotal)}</TableCell>
+                <TableCell align="right" style={{ fontWeight: "bold" }}>
+                  Valor Total:
+                </TableCell>
+                <TableCell align="right" style={{ fontWeight: "bold" }}>
+                  {transformNumberToBrl(valorTotal)}
+                </TableCell>
               </TableRow>
             </TableFooter>
           </Table>
         </TableContainer>
       </Card>
-    </Grid>
+    </Box>
   );
 };
 

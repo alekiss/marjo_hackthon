@@ -1,5 +1,6 @@
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import Extrato from "../../components/Extrato";
+import Header from "../../components/Header";
 
 const Home = () => {
   const mockExtrato = {
@@ -23,12 +24,13 @@ const Home = () => {
     valorTotal: 533,
   };
   return (
-    <Grid container pt={"spacing-16"} px={"spacing-12"}>
+    <Box display="flex" flexDirection="column" pt="spacing-16" px="spacing-12">
+      <Header />
       <Extrato
         transacoes={mockExtrato.transacoes}
         valorTotal={mockExtrato.valorTotal}
       />
-    </Grid>
+    </Box>
   );
 };
 

@@ -1,0 +1,9 @@
+.header {
+  position: sticky;
+  background-color: var(--color-primary-variant);
+}
+
+.fa-solid {
+  height: 150px;
+  color: white;
+}
