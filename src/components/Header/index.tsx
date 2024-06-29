@@ -37,6 +37,7 @@ const Header = () => {
   const handleConfirm = () => {
     setOpenModal(false);
     navigate("/login");
+    localStorage.clear()
   };
 
   const DrawerList = (
