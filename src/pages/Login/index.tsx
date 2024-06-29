@@ -41,6 +41,7 @@ const Login = () => {
   const logarUsuario = () => {
     logar(usuario).then((res)=>{
       console.log(res)
+      localStorage.setItem('usuario', res.data.id)
     })
   }
 

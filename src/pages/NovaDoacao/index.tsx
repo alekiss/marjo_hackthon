@@ -13,6 +13,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Header from '../../components/Header';
+import { createNovaDoacao } from '../../services/user.services';
 
 
 const steps = ['Preencher Dados', 'Confirmar Dados'];
@@ -34,8 +35,8 @@ export default function HorizontalLinearStepper() {
     setOpen2(false);
 
     if (value) {
-      handleNext()
-
+     
+      novaDoacao
     }
   };
 
@@ -91,6 +92,14 @@ export default function HorizontalLinearStepper() {
     setActiveStep(0);
   };
 
+
+  const novaDoacao = () =>{
+    doacao.pessoa = localStorage.getItem('usuario')
+    createNovaDoacao(doacao).then((res)=>{
+      handleNext()
+      console.log(res)
+    })
+  }
   return (
     <Box sx={{ width: '100%' }}>
 

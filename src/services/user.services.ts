@@ -22,6 +22,6 @@ export const getTransacaoListByIdUsuario = async (id: any): Promise<AxiosRespons
 };
 
 export const createNovaDoacao = async (body: any): Promise<AxiosResponse<any>> => {
-      const response = await api.post('/doacao', body);
+      const response = await api.post('/doacoes', body);
     return response;
 };
