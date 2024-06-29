@@ -1,8 +1,9 @@
+import { AxiosResponse } from "axios";
 import api from "./api";
 
 
 export const logar = async (body:any): Promise<AxiosResponse<any>> => {
-    const response = await api.post('/api/token', body)
+    const response = await api.post('/api/token/', body)
     return response;
 };
 

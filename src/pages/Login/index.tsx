@@ -1,13 +1,12 @@
-import React, { useState, ChangeEvent } from "react";
+import  { useState, ChangeEvent } from "react";
 import { Card, TextField, Button, IconButton } from "@mui/material";
 import majorLogo from '../../assets/img/logo-major.png'
 import { Link } from "react-router-dom";
-import { cpf } from 'cpf-cnpj-validator';
 import Snackbar from '@mui/material/Snackbar';
 
 import { logar } from "../../services/user.services";
 const Login = () => {
-  const [usuario, setUsuario] = useState<any>({ cpf: null, password: null, username: null, email: null });
+  const [usuario, setUsuario] = useState<any>({  password: null, username: null });
   const [mensagemErro, setMensagemErro] = useState<any>("");
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
