@@ -45,6 +45,8 @@ const Login = () => {
       localStorage.setItem('refresh', res.data.refresh)
       navigate('/')
 
+    }).catch((error)=>{
+      console.log('Ops! Algo deu errado!')
     })
   }
 
