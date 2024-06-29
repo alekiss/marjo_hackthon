@@ -1,12 +1,12 @@
-import  { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent } from "react";
 import { Card, TextField, Button, IconButton } from "@mui/material";
 import majorLogo from '../../assets/img/logo-major.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Snackbar from '@mui/material/Snackbar';
 
 import { logar } from "../../services/user.services";
 const Login = () => {
-  const [usuario, setUsuario] = useState<any>({  password: null, username: null });
+  const [usuario, setUsuario] = useState<any>({ password: null, username: null });
   const [mensagemErro, setMensagemErro] = useState<any>("");
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -16,6 +16,7 @@ const Login = () => {
     }));
   };
 
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false);
   const handleSubmit = () => {
 
@@ -38,11 +39,12 @@ const Login = () => {
 
 
   const logarUsuario = () => {
-    logar(usuario).then((res)=>{
-      console.log(res)
+    logar(usuario).then((res) => {
       localStorage.setItem('usuario', res.data.id)
       localStorage.setItem('access', res.data.access)
       localStorage.setItem('refresh', res.data.refresh)
+      navigate('/')
+
     })
   }
 
