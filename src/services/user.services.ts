@@ -13,8 +13,8 @@ export const createUsuario = async (body: any): Promise<AxiosResponse<any>> => {
 };
 
 
-export const getTransacaoListByIdUsuario = async (id: any): Promise<AxiosResponse<any>> => {
-      const response = await api.get('/transacao/'+id);
+export const getTransacaoList= async (): Promise<AxiosResponse<any>> => {
+      const response = await api.get('/doacoes/');
     return response;
 
 };
