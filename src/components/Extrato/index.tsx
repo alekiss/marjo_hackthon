@@ -45,7 +45,7 @@ const columns: Column[] = [
     align: "right",
   },
   { id: "valor", label: "Valor (R$)", minWidth: 130, align: "right" },
-  { id: "descricao", label: "PDF" },
+  { id: "descricao", label: "PDF" ,  minWidth: 130, align: "right"},
 ];
 
 const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
