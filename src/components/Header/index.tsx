@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import majorLogo from "../../assets/img/logo-major.png";
+import majorLogo from "./logo-majo-branco.png";
 import "./styles.css";
 import {
   Button,
@@ -85,7 +85,7 @@ const Header = () => {
         </Button>
         <Link to="/" style={{ textDecoration: "none" }}>
           <Box sx={{ display: "flex", alignItems: "center", marginLeft: 2 }}>
-            <img width={100} src={majorLogo} alt="Major Logo" />
+            <img width={150} src={majorLogo} alt="Major Logo" />
           </Box>
         </Link>
       </Box>
