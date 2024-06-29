@@ -17,7 +17,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 const steps = ['Preencher Dados', 'Confirmar Dados'];
 
 export default function HorizontalLinearStepper() {
-  const [doacao, setDoacao] = React.useState<any>({ valor: null, descricao: null });
+  const [doacao, setDoacao] = React.useState<any>({ valor: 0, descricao: null });
   const [open, setOpen] = React.useState(false)
   const [open2, setOpen2] = React.useState(false);
   const [openSair, setOpenSair] = React.useState(false);
@@ -61,11 +61,21 @@ export default function HorizontalLinearStepper() {
   };
 
   const handleNext = () => {
+
+    if (activeStep == 0) {
+      if (doacao.valor == null || doacao.valor.length == 0 || doacao.valor < 1) {
+        setMensagemErro('Valor minimo é de 1 real!')
+        setOpen(true);
+        return
+      }
+    }
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
+
+
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
@@ -112,7 +122,7 @@ export default function HorizontalLinearStepper() {
                 <Button variant="contained" disabled>Baixar Comprovante</Button>
                 <div>
                   <Link to="/" style={{ textDecoration: 'none', width: '100%' }}>
-                    <Button variant="contained" onClick={handleReset}>Ir para Home! </Button>
+                    <Button variant="contained" onClick={handleReset}>Ir para Transações </Button>
 
                   </Link>
                 </div>
@@ -127,7 +137,7 @@ export default function HorizontalLinearStepper() {
               <div style={{ width: '30%', textAlign: 'justify', padding: '20px', display: 'flex', gap: '5%', justifyContent: 'center' }} >
 
                 <TextField id="descricao" label="Descrição" variant="outlined" onChange={handleInputChange} value={doacao.descricao || ''} style={{ marginBottom: '20px' }} />
-                <TextField id="valor" label="Valor" variant="outlined" type="text" onChange={handleInputChange} value={doacao.valor || ''} style={{ marginBottom: '20px' }} />
+                <TextField id="valor" label="Valor*" variant="outlined" type="text" onChange={handleInputChange} value={doacao.valor || ''} style={{ marginBottom: '20px' }} />
 
               </div>
 
@@ -135,7 +145,7 @@ export default function HorizontalLinearStepper() {
             </>)}
             {activeStep == 1 && (<>
               <div style={{ padding: '20px', display: 'flex', gap: '5%', justifyContent: 'center' }} >
-                <h3>Descrição: {doacao.descricao}</h3>
+                <h3>Descrição: {doacao.descricao ? doacao.descrica : 'Não Informado'}</h3>
                 <h3>Valor: {doacao.valor}</h3>
 
               </div>
