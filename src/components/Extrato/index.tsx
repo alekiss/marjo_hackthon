@@ -25,7 +25,7 @@ interface ExtratoProps {
 
 export type ExtratoType = {
   descricao: string;
-  dataTransacao: string;
+  formatted_date: string;
   valor: number;
 };
 
@@ -87,10 +87,10 @@ const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
                 <TableRow hover key={item.valor}>
                   <TableCell>{item.descricao}</TableCell>
                   <TableCell align="right">
-                    {dateTransform(item.dataTransacao)}
+                    {dateTransform(item.formatted_date)}
                   </TableCell>
                   <TableCell align="right">
-                    {transformNumberToBrl(item.valor)}
+                    {item.valor}
                   </TableCell>
                 </TableRow>
               ))}

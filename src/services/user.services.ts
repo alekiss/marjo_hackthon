@@ -1,31 +1,25 @@
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from "axios";
+import api from "./api";
 
-const api = axios.create({
-    baseURL: 'localhost:8080',
-});
 
-export const logar = async (): Promise<AxiosResponse<any>> => {
-    const response = api.post('/login')
-    console.log(response)
+export const logar = async (body:any): Promise<AxiosResponse<any>> => {
+    const response = await api.post('/api/token/', body)
     return response;
 };
 
 export const createUsuario = async (body: any): Promise<AxiosResponse<any>> => {
-    const response = api.post('/create-user', body)
-    console.log(response)
+    const response = await api.post('/create-user', body)
     return response;
 };
 
 
-export const getTransacaoListByIdUsuario = async (id: any): Promise<AxiosResponse<any>> => {
-      const response = api.get('/transacao/'+id);
-    console.log(response)
+export const getTransacaoList= async (): Promise<AxiosResponse<any>> => {
+      const response = await api.get('doacao/minhas-doacoes/');
     return response;
 
 };
 
 export const createNovaDoacao = async (body: any): Promise<AxiosResponse<any>> => {
-      const response = api.post('/doacao', body);
-    console.log(response)
+      const response = await api.post('doacao/doacoes/', body);
     return response;
 };

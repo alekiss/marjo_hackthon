@@ -5,6 +5,7 @@ import Snackbar from '@mui/material/Snackbar';
 import majorLogo from '../../assets/img/logo-major.png'
 
 import { createUsuario } from "../../services/user.services";
+import { Link } from "react-router-dom";
 
 const Cadastro = () => {
   const [usuario, setUsuario] = useState<any>({ nome: null, cpf: null, senha: null });
@@ -74,6 +75,10 @@ const Cadastro = () => {
         <TextField id="password" label="Senha" variant="outlined" type="password" onChange={handleInputChange} value={usuario.password || ''} style={{ marginBottom: '20px' }} />
       
         <Button variant="contained" style={{ backgroundColor: '#002884' }} onClick={handleSubmit}>Criar Conta</Button>
+        <hr style={{ marginTop: '10px', marginBottom: '10px' }} />
+        <Link to="/login" style={{ textDecoration: 'none', width: '100%' }}>
+          <Button variant="contained" id='logar' style={{ backgroundColor: '#002884', width: '100%' }} onClick={handleSubmit}>Fazer login</Button>
+        </Link>
       </Card>
       <Snackbar
         open={open}
