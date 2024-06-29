@@ -20,6 +20,7 @@ const Cadastro = () => {
   };
 
 
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false);
   const handleSubmit = () => {
     if (usuario.nome == null || usuario.nome.length == 0) {
@@ -49,21 +50,17 @@ const Cadastro = () => {
       setOpen(true);
       return
     } else {
-      console.log('entrar')
+      
+      
       setOpen(false)
-      criarUsuario()
+      createUsuario(usuario).then((res)=>{
+        console.log(res)
+        navigate('/login')
+      })
     }
 
   };
 
-
-  const criarUsuario = () => {
-    createUsuario(usuario).then((res)=>{
-      console.log(res)
-      const navigate = useNavigate()
-      navigate('/login')
-    })
-  }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }} >
