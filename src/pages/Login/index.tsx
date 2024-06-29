@@ -4,6 +4,8 @@ import majorLogo from '../../assets/img/logo-major.png'
 import { Link } from "react-router-dom";
 import { cpf } from 'cpf-cnpj-validator';
 import Snackbar from '@mui/material/Snackbar';
+
+import { logar } from "../../services/user.services";
 const Login = () => {
   const [usuario, setUsuario] = useState<any>({ cpf: null, password: null, username: null, email: null });
   const [mensagemErro, setMensagemErro] = useState<any>("");
@@ -18,31 +20,29 @@ const Login = () => {
   const [open, setOpen] = useState(false);
   const handleSubmit = () => {
 
-    if (usuario.cpf == null || usuario.cpf.length == 0) {
-      setMensagemErro('Digite seu CPF!')
+    if (usuario.username == null || usuario.username.length == 0) {
+      setMensagemErro('Digite seu usuário!')
       setOpen(true);
       return
     }
 
     if (usuario.password == null || usuario.password.length == 0) {
-      setMensagemErro('Digite seu password!')
+      setMensagemErro('Digite sua senha!')
       setOpen(true);
       return
     }
 
-    if (!cpf.isValid(usuario.cpf)) {
-      setMensagemErro('CPF Inválido!')
-      setOpen(true);
-      return
-    } else {
-      console.log('entrar')
-      setOpen(false)
-    }
+    setOpen(false)
+    logarUsuario()
 
   };
 
 
-
+  const logarUsuario = () => {
+    logar(usuario).then((res)=>{
+      console.log(res)
+    })
+  }
 
 
   return (
@@ -50,9 +50,6 @@ const Login = () => {
       <Card sx={{ width: '30%', textAlign: 'center', padding: '20px', display: 'flex', flexDirection: 'column' }} >
         <img src={majorLogo} alt="Major Logo" width={200} style={{ margin: 'auto' }} />
         <TextField id="username" label="Usuário" variant="outlined" onChange={handleInputChange} value={usuario.username || ''} style={{ marginBottom: '20px' }} />
-       
-        
-        
         <TextField id="password" label="Senha" variant="outlined" type="password" onChange={handleInputChange} value={usuario.password || ''} style={{ marginBottom: '20px' }} />
         <Button id='entrar' variant="contained" color="primary" onClick={handleSubmit}>Entrar</Button>
         <hr style={{ marginTop: '10px', marginBottom: '10px' }} />
