@@ -90,7 +90,7 @@ const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
                     {dateTransform(item.formatted_date)}
                   </TableCell>
                   <TableCell align="right">
-                    {transformNumberToBrl(item.valor)}
+                    {item.valor}
                   </TableCell>
                 </TableRow>
               ))}
