@@ -1,21 +1,51 @@
-import { useState, ChangeEvent } from "react";
-import { Card, TextField, Button } from "@mui/material";
+import React, { useState, ChangeEvent } from "react";
+import { Card, TextField, Button, IconButton } from "@mui/material";
 import majorLogo from '../../assets/img/logo-major.png'
 import { Link } from "react-router-dom";
+import { cpf } from 'cpf-cnpj-validator';
+import Snackbar from '@mui/material/Snackbar';
 const Login = () => {
   const [usuario, setUsuario] = useState<any>({ cpf: null, senha: null });
-
+  const [mensagemErro, setMensagemErro] = useState<any>("");
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setUsuario((prevLogin: any) => ({
       ...prevLogin,
       [id]: value
     }));
+    if (id == 'cpf') {
+      setMensagemErro
+    }
   };
 
+  const [open, setOpen] = useState(false);
   const handleSubmit = () => {
-    console.log(usuario);
+
+    if (usuario.cpf == null || usuario.cpf.length == 0) {
+      setMensagemErro('Digite seu CPF!')
+      setOpen(true);
+      return
+    }
+
+    if (usuario.senha == null || usuario.senha.length == 0) {
+      setMensagemErro('Digite seu senha!')
+      setOpen(true);
+      return
+    }
+
+    if (!cpf.isValid(usuario.cpf)) {
+      setMensagemErro('CPF Inválido!')
+      setOpen(true);
+      return
+    } else {
+      console.log('entrar')
+      setOpen(false)
+    }
+
   };
+
+
+
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }} >
@@ -31,6 +61,13 @@ const Login = () => {
           <Button variant="contained" id='criarConta' style={{ backgroundColor: '#002884', width: '100%' }} onClick={handleSubmit}>Criar uma conta</Button>
         </Link>
       </Card>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        message={mensagemErro}
+
+
+      />
     </div>
   );
 };
