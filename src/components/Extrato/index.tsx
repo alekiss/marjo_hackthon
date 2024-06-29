@@ -45,6 +45,7 @@ const columns: Column[] = [
     align: "right",
   },
   { id: "valor", label: "Valor (R$)", minWidth: 130, align: "right" },
+  { id: "descricao", label: "PDF" },
 ];
 
 const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
@@ -89,6 +90,9 @@ const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
                   </TableCell>
                   <TableCell align="right">
                     {item.valor}
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button variant="contained" >PDF</Button>
                   </TableCell>
                 </TableRow>
               ))}
