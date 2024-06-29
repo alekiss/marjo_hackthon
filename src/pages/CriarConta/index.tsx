@@ -5,7 +5,7 @@ import Snackbar from '@mui/material/Snackbar';
 import majorLogo from '../../assets/img/logo-major.png'
 
 import { createUsuario } from "../../services/user.services";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
   const [usuario, setUsuario] = useState<any>({ nome: null, cpf: null, senha: null });
@@ -60,6 +60,8 @@ const Cadastro = () => {
   const criarUsuario = () => {
     createUsuario(usuario).then((res)=>{
       console.log(res)
+      const navigate = useNavigate()
+      navigate('/login')
     })
   }
 
