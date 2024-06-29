@@ -4,6 +4,7 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login/index.tsx";
 import Home from "./pages/Home/index.tsx";
+import CriarConta from "./pages/CriarConta/index.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -11,6 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/criar-conta" element={<CriarConta />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
