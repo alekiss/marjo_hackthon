@@ -13,9 +13,6 @@ const Login = () => {
       ...prevLogin,
       [id]: value
     }));
-    if (id == 'cpf') {
-      setMensagemErro
-    }
   };
 
   const [open, setOpen] = useState(false);
