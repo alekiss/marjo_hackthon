@@ -102,8 +102,12 @@ export default function HorizontalLinearStepper() {
 
 
             </>)}
-            {activeStep == 1 && (<>oi2</>)}
-            {activeStep == 2 && (<>oi3</>)}
+            {activeStep == 1 && (<>
+              <div style={{ padding: '20px', display: 'flex', gap: '5%', justifyContent: 'center' }} >
+                <h3>Descrição: {doacao.descricao}</h3>
+                <h3>Valor: {doacao.valor}</h3>
+              </div>
+            </>)}
 
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Button
