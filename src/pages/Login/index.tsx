@@ -42,6 +42,8 @@ const Login = () => {
     logar(usuario).then((res)=>{
       console.log(res)
       localStorage.setItem('usuario', res.data.id)
+      localStorage.setItem('access', res.data.access)
+      localStorage.setItem('refresh', res.data.refresh)
     })
   }
 
