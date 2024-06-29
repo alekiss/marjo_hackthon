@@ -7,15 +7,35 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Card, Snackbar, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 
 const steps = ['Preencher Dados', 'Confirmar Dados'];
 
 export default function HorizontalLinearStepper() {
   const [doacao, setDoacao] = React.useState<any>({ valor: null, descricao: null });
   const [open, setOpen] = React.useState(false)
+  const [open2, setOpen2] = React.useState(false);
   const [mensagemErro, setMensagemErro] = React.useState<any>("");
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
+
+  const handleClickOpen = () => {
+    setOpen2(true);
+  };
+
+  const handleClose = (value: any) => {
+    setOpen2(false);
+
+    if (value) {
+      handleNext()
+
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -106,6 +126,7 @@ export default function HorizontalLinearStepper() {
               <div style={{ padding: '20px', display: 'flex', gap: '5%', justifyContent: 'center' }} >
                 <h3>Descrição: {doacao.descricao}</h3>
                 <h3>Valor: {doacao.valor}</h3>
+
               </div>
             </>)}
 
@@ -120,10 +141,17 @@ export default function HorizontalLinearStepper() {
               </Button>
               <Box sx={{ flex: '1 1 auto' }} />
 
-              <Button onClick={handleNext}>
-                {activeStep === steps.length - 1 ? 'Confirmar' : 'Próximo'}
-              </Button>
+              {activeStep === steps.length - 1 ? <><Button onClick={handleClickOpen}>
+                Confirmar
+
+              </Button></> : <>
+                <Button onClick={handleNext}>
+                  Próximo
+
+                </Button></>}
+
             </Box>
+
           </React.Fragment>
         )}
       </Card>
@@ -134,6 +162,29 @@ export default function HorizontalLinearStepper() {
 
 
       />
+
+      <Dialog
+        open={open2}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Atenção!
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Uma vez transferido, ação não poderá ser desfeito, editado ou cancelado! <br />
+            Caso de dúvidas, entre em contato com o nosso suporte!
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button onClick={() => handleClose(false)} variant='contained' style={{ backgroundColor: 'red' }}>Cancelar</Button>
+          <Button onClick={() => handleClose(true)} variant='contained' autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }
