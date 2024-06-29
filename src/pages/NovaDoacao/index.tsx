@@ -6,7 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Card, Snackbar, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -97,11 +97,16 @@ export default function HorizontalLinearStepper() {
 
   const novaDoacao = () =>{
     doacao.pessoa = localStorage.getItem('usuario')
-    console.log('n')
     createNovaDoacao(doacao).then((res)=>{
       handleNext()
-
-      console.log(res)
+    }).catch((error)=>{
+      console.log('Ops! Algo deu errado!')
+      if (error.status == 401) {
+        const navigate = useNavigate()
+        navigate('/login')
+        localStorage.clear()
+        return;
+    }
     })
   }
   return (

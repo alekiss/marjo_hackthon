@@ -3,6 +3,7 @@ import Extrato from "../../components/Extrato";
 import Header from "../../components/Header";
 import { getTransacaoList } from "../../services/user.services";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const Home = () => {
   // const mockExtrato = {
@@ -30,8 +31,15 @@ const Home = () => {
 
   const getList = () => {
     getTransacaoList().then((res: any) => {
-      console.log(res)
       setData(res.data)
+    }).catch((error)=>{
+      console.log('Ops! Algo deu errado!')
+      if (error.status == 401) {
+        const navigate = useNavigate()
+        navigate('/login')
+        localStorage.clear()
+        return;
+    }
     })
   }
 
