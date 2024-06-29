@@ -26,10 +26,12 @@ const Home = () => {
   return (
     <Box display="flex" flexDirection="column" pt="spacing-16" px="spacing-12">
       <Header />
+      <div style={{padding:'40px'}}>
       <Extrato
         transacoes={mockExtrato.transacoes}
         valorTotal={mockExtrato.valorTotal}
       />
+      </div>
     </Box>
   );
 };

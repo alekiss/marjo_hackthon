@@ -1,6 +1,8 @@
 import {
   Box,
+  Button,
   Card,
+  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -8,10 +10,13 @@ import {
   TableFooter,
   TableHead,
   TableRow,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { dateTransform } from "../../utils/date-transform";
 import { transformNumberToBrl } from "../../utils/transform-number-to-brl";
+import { Link } from "react-router-dom";
+
 
 interface ExtratoProps {
   transacoes: ExtratoType[];
@@ -47,8 +52,21 @@ const columns: Column[] = [
 const Extrato = ({ transacoes, valorTotal }: ExtratoProps) => {
   return (
     <Box>
-      <Typography>Transações Realizadas:</Typography>
-      <Card>
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+        <h2>Transações Realizadas:</h2>
+        <div>
+          <Tooltip title="Fazer uma nova doação" placement="top" arrow>
+            <Link to="/nova-doacao">
+              <Button variant="contained"  >
+                +
+              </Button>
+            </Link>
+          </Tooltip>
+
+
+        </div>
+      </div>
+      <Card sx={{ marginTop: 2 }}>
         <TableContainer>
           <Table>
             <TableHead>
