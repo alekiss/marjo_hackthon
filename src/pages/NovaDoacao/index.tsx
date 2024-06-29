@@ -20,6 +20,7 @@ export default function HorizontalLinearStepper() {
   const [doacao, setDoacao] = React.useState<any>({ valor: null, descricao: null });
   const [open, setOpen] = React.useState(false)
   const [open2, setOpen2] = React.useState(false);
+  const [openSair, setOpenSair] = React.useState(false);
   const [mensagemErro, setMensagemErro] = React.useState<any>("");
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set<number>());
@@ -35,6 +36,16 @@ export default function HorizontalLinearStepper() {
       handleNext()
 
     }
+  };
+
+  const handleSair = () => {
+    setOpenSair(true);
+  }
+
+  const handleCloseSair = (value: any) => {
+    setOpenSair(false);
+
+
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -131,14 +142,24 @@ export default function HorizontalLinearStepper() {
             </>)}
 
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button
-                color="inherit"
-                hidden={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Voltar
-              </Button>
+              {activeStep == 0 ? <>
+                <Button
+                  color="inherit"
+                  hidden={activeStep === 0}
+                  onClick={handleSair}
+                  sx={{ mr: 1 }}
+                >
+                  Voltar
+                </Button></> : <>
+                <Button
+                  color="inherit"
+                  hidden={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Voltar
+                </Button></>}
+
               <Box sx={{ flex: '1 1 auto' }} />
 
               {activeStep === steps.length - 1 ? <><Button onClick={handleClickOpen}>
@@ -183,6 +204,34 @@ export default function HorizontalLinearStepper() {
           <Button onClick={() => handleClose(true)} variant='contained' autoFocus>
             Confirmar
           </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openSair}
+        onClose={handleCloseSair}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Atenção!
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Todos os seus dados preenchidos serão perdidos <br />
+            Deseja realmente sair?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Button onClick={() => handleCloseSair(false)} variant='contained' style={{ backgroundColor: 'red' }}>Cancelar</Button>
+
+          <div>
+            <Link to="/" style={{ textDecoration: 'none', width: '100%' }}>
+              <Button onClick={() => handleCloseSair(true)} variant='contained' autoFocus>
+                Sair
+              </Button>
+            </Link>
+          </div>
         </DialogActions>
       </Dialog>
     </Box>
