@@ -29,24 +29,15 @@ const Home = () => {
 
   const [data, setData] = useState<any>({})
 
-  const getList = () => {
-    getTransacaoList().then((res: any) => {
-      if (res.status == 401) {
-        const navigate = useNavigate()
-        navigate('/login')
-        localStorage.clear()
-        return;
+  const getList = async () => {
+    const res = await getTransacaoList()
+    if (res.status == 401) {
+      const navigate = useNavigate()
+      navigate('/login')
+      localStorage.clear()
+      return;
     }
-      setData(res.data)
-    }).catch((error)=>{
-      console.log('Ops! Algo deu errado!')
-      if (error.status == 401) {
-        const navigate = useNavigate()
-        navigate('/login')
-        localStorage.clear()
-        return;
-    }
-    })
+    setData(res.data)
   }
 
   useEffect(() => { getList() }, [])
