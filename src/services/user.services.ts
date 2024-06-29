@@ -5,17 +5,27 @@ const api = axios.create({
 });
 
 export const logar = async (): Promise<AxiosResponse<any>> => {
-    return api.post('/login');
+    const response = api.post('/login')
+    console.log(response)
+    return response;
 };
 
 export const createUsuario = async (body: any): Promise<AxiosResponse<any>> => {
-    return api.post('/usuarios', body);
+    const response = api.post('/create-user', body)
+    console.log(response)
+    return response;
 };
 
+
 export const getTransacaoListByIdUsuario = async (id: any): Promise<AxiosResponse<any>> => {
-    return api.get('/transacao/'+id);
+      const response = api.get('/transacao/'+id);
+    console.log(response)
+    return response;
+
 };
 
 export const createNovaDoacao = async (body: any): Promise<AxiosResponse<any>> => {
-    return api.post('/doacao', body);
+      const response = api.post('/doacao', body);
+    console.log(response)
+    return response;
 };
