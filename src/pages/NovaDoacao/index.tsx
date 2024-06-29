@@ -36,7 +36,7 @@ export default function HorizontalLinearStepper() {
 
     if (value) {
      
-      novaDoacao
+      novaDoacao()
     }
   };
 
@@ -50,7 +50,7 @@ export default function HorizontalLinearStepper() {
 
   };
 
-  
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -97,8 +97,10 @@ export default function HorizontalLinearStepper() {
 
   const novaDoacao = () =>{
     doacao.pessoa = localStorage.getItem('usuario')
+    console.log('n')
     createNovaDoacao(doacao).then((res)=>{
       handleNext()
+
       console.log(res)
     })
   }

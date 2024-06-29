@@ -14,12 +14,12 @@ export const createUsuario = async (body: any): Promise<AxiosResponse<any>> => {
 
 
 export const getTransacaoList= async (): Promise<AxiosResponse<any>> => {
-      const response = await api.get('/doacoes/');
+      const response = await api.get('doacao/minhas-doacoes/');
     return response;
 
 };
 
 export const createNovaDoacao = async (body: any): Promise<AxiosResponse<any>> => {
-      const response = await api.post('/doacoes', body);
+      const response = await api.post('doacao/doacoes/', body);
     return response;
 };
