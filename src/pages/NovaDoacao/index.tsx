@@ -6,6 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Card, Snackbar, TextField } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const steps = ['Preencher Dados', 'Confirmar Dados'];
 
@@ -74,12 +75,17 @@ export default function HorizontalLinearStepper() {
             <div style={{ height: '50vh' }}>
               <Typography sx={{ mt: 2, mb: 1, textAlign: 'center' }}>
                 <h3>   Transação realizada com sucesso! <br /> Obrigada, sua ajuda faz a diferença!</h3>
-
               </Typography>
 
               <div style={{ width: '100%', justifyContent: 'center', display: 'flex', gap: '5px', marginTop: '20px' }}>
                 <Button variant="contained" disabled>Baixar Comprovante</Button>
-                <Button variant="contained" onClick={handleReset}>Ir para Home! </Button>
+                <div>
+                  <Link to="/" style={{ textDecoration: 'none', width: '100%' }}>
+                    <Button variant="contained" onClick={handleReset}>Ir para Home! </Button>
+
+                  </Link>
+                </div>
+
               </div>
             </div>
           </React.Fragment>
