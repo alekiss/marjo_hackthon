@@ -46,7 +46,6 @@ const Login = () => {
       navigate('/')
 
     }).catch((error)=>{
-      console.log('Ops! Algo deu errado!')
       if (error.status == 401) {
         navigate('/login')
         localStorage.clear()

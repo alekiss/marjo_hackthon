@@ -80,7 +80,7 @@ const Cadastro = () => {
         <TextField id="cpf" label="CPF*" variant="outlined" onChange={handleInputChange} value={usuario.cpf || ''} style={{ marginBottom: '20px' }} />
         <TextField id="password" label="Senha" variant="outlined" type="password" onChange={handleInputChange} value={usuario.password || ''} style={{ marginBottom: '20px' }} />
 
-        <Button variant="contained" style={{ backgroundColor: '#002884' }} onClick={handleSubmit}>Criar Conta</Button>
+        <Button variant="contained"  onClick={handleSubmit}>Criar Conta</Button>
         <hr style={{ marginTop: '10px', marginBottom: '10px' }} />
         <Link to="/login" style={{ textDecoration: 'none', width: '100%' }}>
           <Button variant="contained" id='logar' style={{ backgroundColor: '#002884', width: '100%' }} onClick={handleSubmit}>Fazer login</Button>

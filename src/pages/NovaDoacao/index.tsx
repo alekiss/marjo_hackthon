@@ -171,7 +171,7 @@ export default function HorizontalLinearStepper() {
                 </>)}
                 {activeStep == 1 && (<>
                   <div style={{ padding: '20px', display: 'flex', gap: '5%', justifyContent: 'center' }} >
-                    <h3>Descrição: {doacao.descricao ? doacao.descrica : 'Não Informado'}</h3>
+                    <h3>Descrição: {doacao.descricao ? doacao.descricao : 'Não Informado'}</h3>
                     <h3>Valor: {doacao.valor}</h3>
 
                   </div>
