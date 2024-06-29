@@ -8,7 +8,7 @@ export const logar = async (body: any): Promise<any> => {
 };
 
 export const createUsuario = async (body: any): Promise<any> => {
-    const response = await api.post('/create-user', body)
+    const response = await api.post('/create-user/', body)
   
     return response;
 };
