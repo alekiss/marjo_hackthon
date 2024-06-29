@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Card,
-  IconButton,
   Table,
   TableBody,
   TableCell,
@@ -11,7 +10,6 @@ import {
   TableHead,
   TableRow,
   Tooltip,
-  Typography,
 } from "@mui/material";
 import { dateTransform } from "../../utils/date-transform";
 import { transformNumberToBrl } from "../../utils/transform-number-to-brl";
@@ -30,7 +28,7 @@ export type ExtratoType = {
 };
 
 interface Column {
-  id: "descricao" | "data-transacao" | "valor";
+  id: "descricao" | "formatted_date" | "valor";
   label: string;
   minWidth?: number;
   maxWidth?: number;
@@ -41,7 +39,7 @@ interface Column {
 const columns: Column[] = [
   { id: "descricao", label: "Descrição", minWidth: 400 },
   {
-    id: "data-transacao",
+    id: "formatted_date",
     label: "Data da Transação",
     minWidth: 170,
     align: "right",
